@@ -1,0 +1,21 @@
+\begin{table}[!t]
+\renewcommand{\arraystretch}{1.05}
+\caption{Mean wall-clock time per run (seconds, 5 seeds). KOA achieves competitive convergence quality with runtime comparable to reference-direction-based algorithms.}
+\label{tab:runtime}
+\centering
+\tiny
+\setlength{\tabcolsep}{2.5pt}
+\begin{tabular}{lrrrrrrrrrrr}
+\toprule
+Algorithm & ZDT1 & ZDT2 & ZDT3 & WFG1 & WFG4 & WFG9 & LSMOP1 & LSMOP9 & MaF4 & MaF7 & Mean \\
+\midrule
+\textbf{KOA} & 3.7 & 3.7 & 4.1 & 6.8 & 6.9 & 7.1 & 6.3 & 6.1 & 5.7 & 6.6 & 6.0 \\
+NSGA-II & 1.9 & 1.2 & 1.2 & 1.2 & 1.2 & 1.3 & 1.4 & 1.5 & 1.2 & 1.2 & 1.3 \\
+NSGA-III & 1.6 & 1.6 & 1.6 & 1.6 & 1.6 & 1.8 & 1.8 & 2.0 & 1.5 & 1.6 & 1.7 \\
+MOEA/D & 14.4 & 14.2 & 14.4 & 18.8 & 18.1 & 30.2 & 19.3 & 20.4 & 15.8 & 15.5 & 17.8 \\
+RVEA & 1.2 & 1.2 & 1.2 & 1.1 & 1.1 & 1.2 & 1.3 & 1.2 & 0.9 & 1.2 & 1.1 \\
+AGE-MOEA2 & 6.2 & 3.0 & 4.7 & 5.5 & 8.4 & 9.4 & 5.1 & 3.3 & 4.0 & 5.7 & 5.7 \\
+CMOPSO & 3.6 & 3.7 & 3.1 & 4.2 & 4.1 & 4.3 & 3.4 & 3.5 & 3.6 & 3.7 & 3.8 \\
+\bottomrule
+\end{tabular}
+\end{table}

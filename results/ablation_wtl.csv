@@ -1,0 +1,17 @@
+Metric,Variant,W,T,L
+HV,KOA-FixedRho0.2,11,4,1
+HV,KOA-FixedRho0.6,9,6,1
+HV,KOA-FixedRho1.0,0,16,0
+HV,KOA-NoArchive,9,6,1
+HV,KOA-NoPopSeed,0,16,0
+HV,KOA-NoRefresh,1,14,1
+HV,KOA-NoScaleNorm,0,16,0
+HV,KOA-NoState,2,12,2
+IGD,KOA-FixedRho0.2,11,4,1
+IGD,KOA-FixedRho0.6,11,4,1
+IGD,KOA-FixedRho1.0,0,16,0
+IGD,KOA-NoArchive,9,7,0
+IGD,KOA-NoPopSeed,0,16,0
+IGD,KOA-NoRefresh,0,16,0
+IGD,KOA-NoScaleNorm,0,16,0
+IGD,KOA-NoState,1,15,0
