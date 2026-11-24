@@ -1,0 +1,3 @@
+2340 unique successful runs (expected 2340)
+IGD 0 of 72 comparisons significant after Holm
+HV 1 of 72 comparisons significant after Holm

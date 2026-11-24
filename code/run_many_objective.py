@@ -105,6 +105,10 @@ def main():
                          choices=MANY_OBJECTIVE_PROBLEMS)
     parser.add_argument("--m-values", nargs="+", type=int, default=M_VALUES)
     parser.add_argument("--gpu", type=int, default=0)
+    parser.add_argument("--algorithms", nargs="+", default=ALGORITHMS,
+                         choices=ALGORITHMS,
+                         help="Run only these algorithms (e.g. --algorithms SMS-EMOA GDE3). "
+                              "Runs already in results/many_objective_raw.csv are skipped.")
     args = parser.parse_args()
     pin_device(args.gpu)
 
@@ -118,15 +122,15 @@ def main():
     tasks = [(pname, M, algo, seed)
               for pname in args.problems
               for M in args.m_values
-              for algo in ALGORITHMS
+              for algo in args.algorithms
               for seed in range(1, args.n_runs + 1)
               if (pname, M, algo, seed) not in done]
 
-    total = len(args.problems) * len(args.m_values) * len(ALGORITHMS) * args.n_runs
+    total = len(args.problems) * len(args.m_values) * len(args.algorithms) * args.n_runs
     print(f"Many-objective study: {total} total | {len(done)} done | "
           f"{len(tasks)} remaining")
     print(f"Problems={args.problems}  M values={args.m_values}  "
-          f"algorithms={ALGORITHMS}")
+          f"algorithms={args.algorithms}")
     if not tasks:
         print("Nothing to run.")
         return

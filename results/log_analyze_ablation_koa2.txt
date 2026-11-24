@@ -1,0 +1,19 @@
+status: {'ok': 3360}
+Metric                HV    IGD
+Variant                        
+KOA-II             3.375  4.000
+KOA-II-Uniform     3.375  3.625
+KOA-II-PopGuide    3.812  3.750
+KOA-II-FixedAlloc  2.438  3.125
+KOA-II-NoAdapt     5.344  4.438
+KOA-II-DEonly      3.375  3.438
+KOA-II-SBXonly     6.281  5.625
+                    W       T      L    
+Metric             HV IGD  HV IGD HV IGD
+Variant                                 
+KOA-II-Uniform      0   0  16  16  0   0
+KOA-II-PopGuide     1   0  15  16  0   0
+KOA-II-FixedAlloc   0   0  13  15  3   1
+KOA-II-NoAdapt      7   2   8  13  1   1
+KOA-II-DEonly       4   3   9  12  3   1
+KOA-II-SBXonly     11   6   5  10  0   0

@@ -147,10 +147,10 @@ def load_checkpoint():
     return pd.DataFrame(columns=CSV_COLUMNS), set()
 
 
-def build_task_list(done):
+def build_task_list(done, algorithms=ALGORITHMS):
     tasks = []
     for problem_name, n_obj, kind, kwargs in PROBLEMS:
-        for algo_name in ALGORITHMS:
+        for algo_name in algorithms:
             for seed in range(1, N_RUNS + 1):
                 if (problem_name, algo_name, seed) in done:
                     continue
@@ -169,6 +169,10 @@ def main():
                               "('device port'). Has no effect on results or "
                               "speed -- this workload is CPU-only -- it only "
                               "keeps this job off other GPUs on a shared server.")
+    parser.add_argument("--algorithms", nargs="+", default=ALGORITHMS,
+                         choices=ALGORITHMS,
+                         help="Run only these algorithms (e.g. --algorithms SMS-EMOA GDE3). "
+                              "Runs already in results/raw_runs.csv are skipped either way.")
     args = parser.parse_args()
     pin_device(args.gpu)
 
@@ -178,8 +182,8 @@ def main():
     prewarm_pareto_fronts(PROBLEMS, build_problem)
 
     df_existing, done = load_checkpoint()
-    tasks = build_task_list(done)
-    total_all = len(PROBLEMS) * len(ALGORITHMS) * N_RUNS
+    tasks = build_task_list(done, args.algorithms)
+    total_all = len(PROBLEMS) * len(args.algorithms) * N_RUNS
 
     print(f"Total (problem x algorithm x seed) combinations: {total_all}")
     print(f"Already completed (resumed from checkpoint): {len(done)}")

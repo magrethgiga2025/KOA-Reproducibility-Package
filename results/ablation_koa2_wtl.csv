@@ -1,0 +1,13 @@
+Metric,Variant,W,T,L
+HV,KOA-II-Uniform,0,16,0
+HV,KOA-II-PopGuide,1,15,0
+HV,KOA-II-FixedAlloc,0,13,3
+HV,KOA-II-NoAdapt,7,8,1
+HV,KOA-II-DEonly,4,9,3
+HV,KOA-II-SBXonly,11,5,0
+IGD,KOA-II-Uniform,0,16,0
+IGD,KOA-II-PopGuide,0,16,0
+IGD,KOA-II-FixedAlloc,0,15,1
+IGD,KOA-II-NoAdapt,2,13,1
+IGD,KOA-II-DEonly,3,12,1
+IGD,KOA-II-SBXonly,6,10,0

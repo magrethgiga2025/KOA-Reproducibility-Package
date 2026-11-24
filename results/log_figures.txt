@@ -1,0 +1,9 @@
+wrote fig_friedman_ranks
+wrote fig_wtl
+wrote fig_igd_boxplots
+wrote fig_fs_ranks
+wrote fig_fs_fronts
+wrote fig_ablation_ranks
+all figures written to ../figures
+wrote fig_convergence
+wrote fig_sensitivity

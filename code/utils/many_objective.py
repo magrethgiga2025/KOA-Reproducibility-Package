@@ -61,4 +61,31 @@ def many_objective_pareto_front(problem, name, M, n_points=1000):
         return problem.pareto_front(ref_dirs=rd)
     if name == "MaF4":
         return problem.pareto_front(n_points=n_points)
+    if str(name).upper() == "DTLZ7" and M > 3:
+        return dtlz7_reference_front(M, n_points)
     return problem.pareto_front()
+
+
+def dtlz7_reference_front(M, n_points=1000, n_samples=None, seed=12345):
+    """Reference Pareto front of DTLZ7 for any number of objectives M.
+
+    The first M-1 objectives of the Pareto-optimal set lie in the intervals
+    [0, 0.251412] and [0.631627, 0.859401]; the last objective follows from
+    f_M = 2 * (M - sum_i f_i / 2 * (1 + sin(3*pi*f_i))) with g = 1.
+    Points are sampled in these intervals with a fixed seed, mapped as in
+    PlatEMO, filtered for non-dominance, and reduced to n_points.
+    """
+    import numpy as np
+    from pymoo.util.nds.non_dominated_sorting import NonDominatedSorting
+    rng = np.random.default_rng(seed)
+    n_samples = n_samples or max(20 * n_points, 20000)
+    a, b, c, d = 0.0, 0.251412, 0.631627, 0.859401
+    med = (b - a) / ((d - c) + (b - a))
+    U = rng.random((n_samples, M - 1))
+    X = np.where(U <= med, U * (b - a) / med + a, (U - med) * (d - c) / (1 - med) + c)
+    fM = 2.0 * (M - np.sum(X / 2.0 * (1.0 + np.sin(3.0 * np.pi * X)), axis=1))
+    F = np.column_stack([X, fM])
+    F = F[NonDominatedSorting().do(F, only_non_dominated_front=True)]
+    if len(F) > n_points:
+        F = F[rng.choice(len(F), n_points, replace=False)]
+    return F

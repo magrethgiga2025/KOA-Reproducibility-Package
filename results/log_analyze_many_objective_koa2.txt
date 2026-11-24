@@ -1,0 +1,2 @@
+IGD W/T/L of KOA: [81, 32, 15] Friedman p = 6.55e-08
+HV W/T/L of KOA: [85, 41, 2] Friedman p = 1.93e-16

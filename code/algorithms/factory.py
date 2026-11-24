@@ -1,5 +1,6 @@
 """
-Algorithm factory -- KOA Final V3, plus 6 baselines.
+Algorithm factory -- KOA Final V3, plus 8 baselines
+(SMS-EMOA and GDE3 added in the revision).
 
 FIXES APPLIED (see README_FIXES.md):
 
@@ -78,6 +79,24 @@ def build_algorithm(name, n_obj=3, pop_size=100, n_archive=120, seed=None,
         return KOAFinalV3(pop_size=pop_size, n_archive=n_archive, seed=seed,
                            init_X=init_X)
 
+    elif name == "KOA-II" or name.startswith("KOA-II-"):
+        # KOA-II (redesign after the v3 ablation): same shared initial
+        # population, population size and exact reference directions
+        # as NSGA-III / MOEA/D / RVEA.
+        from algorithms.koa2 import KOA2
+        ref_dirs = _exact_ref_dirs(n_obj, pop_size)
+        variants = {
+            "KOA-II":            {},
+            "KOA-II-Uniform":    {"guide": "uniform"},
+            "KOA-II-PopGuide":   {"guide": "population"},
+            "KOA-II-FixedAlloc": {"alloc": "fixed", "p_fixed": 0.5},
+            "KOA-II-NoAdapt":    {"adapt_params": False},
+            "KOA-II-DEonly":     {"alloc": "fixed", "p_fixed": 1.0},
+            "KOA-II-SBXonly":    {"alloc": "fixed", "p_fixed": 0.0},
+        }
+        return KOA2(ref_dirs, pop_size=pop_size, sampling=init_X, seed=seed,
+                    **variants[name])
+
     elif name == "NSGA-II":
         from pymoo.algorithms.moo.nsga2 import NSGA2
         from pymoo.operators.crossover.sbx import SBX
@@ -132,5 +151,29 @@ def build_algorithm(name, n_obj=3, pop_size=100, n_archive=120, seed=None,
         if init_X is not None:
             return CMOPSO(pop_size=pop_size, sampling=init_X)
         return CMOPSO(pop_size=pop_size)
+
+    elif name == "SMS-EMOA":
+        # Added baseline (revision): indicator-based EMOA, same variation
+        # operators and shared initial population as NSGA-II/NSGA-III.
+        # pymoo generates pop_size offspring per generation (n_offsprings
+        # defaults to pop_size), so the FE budget is identical to the others.
+        from pymoo.algorithms.moo.sms import SMSEMOA
+        from pymoo.operators.crossover.sbx import SBX
+        from pymoo.operators.mutation.pm import PM
+        from pymoo.operators.sampling.lhs import LHS
+        sampling = init_X if init_X is not None else LHS()
+        return SMSEMOA(pop_size=pop_size, sampling=sampling,
+                       crossover=SBX(prob=0.9, eta=15), mutation=PM(eta=20))
+
+    elif name == "GDE3":
+        # Added baseline (revision): Generalized Differential Evolution 3
+        # (Kukkonen & Lampinen 2005), from the pymoode package
+        # (pip install pymoode). DE/rand/1/bin with F = CR = 0.5;
+        # pop_size trial vectors per generation -> identical FE budget.
+        from pymoode.algorithms import GDE3
+        from pymoo.operators.sampling.lhs import LHS
+        sampling = init_X if init_X is not None else LHS()
+        return GDE3(pop_size=pop_size, sampling=sampling,
+                    variant="DE/rand/1/bin", F=0.5, CR=0.5)
 
     raise ValueError(f"Unknown algorithm: {name}")

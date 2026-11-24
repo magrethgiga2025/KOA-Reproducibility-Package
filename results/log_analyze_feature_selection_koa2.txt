@@ -1,0 +1,14 @@
+Evaluations used per algorithm:
+              min    max
+algorithm              
+GDE3       10000  10000
+KOA-II     10000  10000
+NSGA-II    10000  10000
+SMS-EMOA   10000  10000 
+
+HV_train  W/T/L for KOA-II: 13/25/1   Friedman ranks: NSGA-II=2.23, SMS-EMOA=3.38, GDE3=2.62, KOA-II=1.77
+IGD       W/T/L for KOA-II: 12/24/3   Friedman ranks: NSGA-II=2.08, SMS-EMOA=3.38, GDE3=2.69, KOA-II=1.85
+HV_test   W/T/L for KOA-II: 6/32/1   Friedman ranks: NSGA-II=2.08, SMS-EMOA=3.54, GDE3=2.54, KOA-II=1.85
+
+Tables written to /home/rs_mir_magreth/KOA-Reproducibility-Package-JKSU/code/results/feature_selection_tables/fs_tables.tex
+Per-run metrics: /home/rs_mir_magreth/KOA-Reproducibility-Package-JKSU/code/results/feature_selection_tables/per_run_metrics.csv

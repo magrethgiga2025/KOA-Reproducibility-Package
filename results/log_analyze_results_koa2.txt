@@ -1,0 +1,31 @@
+Loaded 7200 rows  (7189 ok, 11 error, 0 empty_front)  expected up to 4320 total runs.
+WARNING: 11 runs errored. Affected (problem, algorithm):
+problem algorithm                               error
+   ZDT2 AGE-MOEA2 ZeroDivisionError: division by zero
+
+Wrote /home/rs_mir_magreth/KOA-Reproducibility-Package-JKSU/code/results/summary_table.csv
+Wrote /home/rs_mir_magreth/KOA-Reproducibility-Package-JKSU/code/results/wilcoxon_tests.csv (453/512 comparisons significant at p<0.05)
+Wrote /home/rs_mir_magreth/KOA-Reproducibility-Package-JKSU/code/results/friedman_ranking.csv
+
+--- Friedman average ranks (lower = better rank) ---
+Metric       HV   IGD
+Algorithm            
+NSGA-II    6.22  6.00
+NSGA-III   5.16  4.50
+MOEA/D     6.06  5.31
+RVEA       5.66  5.31
+AGE-MOEA2  4.84  4.62
+CMOPSO     7.53  7.44
+SMS-EMOA   1.81  4.19
+GDE3       5.72  5.38
+KOA-II     2.00  2.25
+
+--- W/T/L summary (KOA vs each baseline, HV, Holm-corrected) ---
+  vs NSGA-II     : 13/2/1
+  vs NSGA-III    : 13/3/0
+  vs MOEA/D      : 13/2/1
+  vs RVEA        : 13/3/0
+  vs AGE-MOEA2   : 12/4/0
+  vs CMOPSO      : 16/0/0
+  vs SMS-EMOA    : 4/3/9
+  vs GDE3        : 15/0/1

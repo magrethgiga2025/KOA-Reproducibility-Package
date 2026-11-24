@@ -27,7 +27,8 @@ FE_BUDGET = POP_SIZE * N_GEN
 # visible GPU on a shared multi-tenant machine.
 DEFAULT_GPU_DEVICE = 0
 
-ALGORITHMS = ["KOA", "NSGA-II", "NSGA-III", "MOEA/D", "RVEA", "AGE-MOEA2", "CMOPSO"]
+ALGORITHMS = ["KOA", "NSGA-II", "NSGA-III", "MOEA/D", "RVEA", "AGE-MOEA2", "CMOPSO",
+              "SMS-EMOA", "GDE3", "KOA-II", "KOA-II-Uniform", "KOA-II-PopGuide", "KOA-II-FixedAlloc", "KOA-II-NoAdapt", "KOA-II-DEonly", "KOA-II-SBXonly"]   # SMS-EMOA and GDE3 added in the revision
 
 PROBLEMS = [
     ("ZDT1",   2, "zdt",   dict(name="zdt1")),

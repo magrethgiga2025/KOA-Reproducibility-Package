@@ -5,3 +5,7 @@ scipy==1.17.1
 pandas==3.0.2
 matplotlib==3.10.8
 numba==0.65.1
+pymoode==0.3.0
+scikit-learn==1.9.1
+joblib==1.6.0
+ucimlrepo==0.0.7
